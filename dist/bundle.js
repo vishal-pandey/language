@@ -7,6 +7,29 @@ var concept = "";
 window.onload = function () {
 	processPath(window.location.hash);
 	linkUpdate();
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/language.json");
+	xhttp.onreadystatechange = function () {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			headMenu(JSON.parse(xhttp.responseText));
+			processLink();
+		}
+	};
+	xhttp.send();
+
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/concept.json");
+	xhttp1.onreadystatechange = function () {
+		if (xhttp1.readyState == 4 && xhttp1.status == 200) {
+			sideMenu(JSON.parse(xhttp1.responseText));
+			processLink();
+		}
+	};
+	xhttp1.send();
+};
+
+function processLink() {
 	var langlink = document.querySelectorAll('[data-link-lang]');
 	var conceptlink = document.querySelectorAll('[data-link-concept]');
 
@@ -67,7 +90,9 @@ window.onload = function () {
 			}
 		}
 	}
-};
+
+	linkUpdate();
+}
 
 function processPath(path) {
 	var url = path.split("/");
@@ -83,6 +108,117 @@ function linkUpdate() {
 	var xx = "/" + language + "/" + concept;
 	window.location.hash = xx;
 	// console.log(xx)
+	try {
+		var _iteratorNormalCompletion3 = true;
+		var _didIteratorError3 = false;
+		var _iteratorError3 = undefined;
+
+		try {
+			for (var _iterator3 = document.querySelectorAll('[data-link-lang]')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+				var el = _step3.value;
+
+				el.style = "background-color:white;";
+			}
+		} catch (err) {
+			_didIteratorError3 = true;
+			_iteratorError3 = err;
+		} finally {
+			try {
+				if (!_iteratorNormalCompletion3 && _iterator3.return) {
+					_iterator3.return();
+				}
+			} finally {
+				if (_didIteratorError3) {
+					throw _iteratorError3;
+				}
+			}
+		}
+
+		document.querySelector('[data-link-lang="' + language + '"]').style = "background-color:lightgrey;";
+
+		var _iteratorNormalCompletion4 = true;
+		var _didIteratorError4 = false;
+		var _iteratorError4 = undefined;
+
+		try {
+			for (var _iterator4 = document.querySelectorAll('[data-link-concept]')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+				var el1 = _step4.value;
+
+				el1.style = "background-color:white;";
+			}
+		} catch (err) {
+			_didIteratorError4 = true;
+			_iteratorError4 = err;
+		} finally {
+			try {
+				if (!_iteratorNormalCompletion4 && _iterator4.return) {
+					_iterator4.return();
+				}
+			} finally {
+				if (_didIteratorError4) {
+					throw _iteratorError4;
+				}
+			}
+		}
+
+		document.querySelector('[data-link-concept="' + concept + '"]').style = "background-color:lightgrey;";
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+function headMenu(links) {
+	var _iteratorNormalCompletion5 = true;
+	var _didIteratorError5 = false;
+	var _iteratorError5 = undefined;
+
+	try {
+		for (var _iterator5 = links[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+			var i = _step5.value;
+
+			document.querySelector(".languages").insertAdjacentHTML('beforeend', '<span class="button" data-link-lang="' + i + '">' + i.charAt(0).toUpperCase() + i.slice(1) + '</span>');
+		}
+	} catch (err) {
+		_didIteratorError5 = true;
+		_iteratorError5 = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion5 && _iterator5.return) {
+				_iterator5.return();
+			}
+		} finally {
+			if (_didIteratorError5) {
+				throw _iteratorError5;
+			}
+		}
+	}
+}
+
+function sideMenu(links) {
+	var _iteratorNormalCompletion6 = true;
+	var _didIteratorError6 = false;
+	var _iteratorError6 = undefined;
+
+	try {
+		for (var _iterator6 = links[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+			var i = _step6.value;
+
+			document.querySelector(".sidebar").insertAdjacentHTML('beforeend', '<span class="button" data-link-concept="' + i + '">' + i.charAt(0).toUpperCase() + i.slice(1) + '</span>');
+		}
+	} catch (err) {
+		_didIteratorError6 = true;
+		_iteratorError6 = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion6 && _iterator6.return) {
+				_iterator6.return();
+			}
+		} finally {
+			if (_didIteratorError6) {
+				throw _iteratorError6;
+			}
+		}
+	}
 }
 
 },{}]},{},[1]);
