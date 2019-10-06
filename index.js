@@ -1,4 +1,5 @@
 import hljs from 'highlight.js';
+
 var language = ""
 var concept = ""
 
@@ -116,12 +117,19 @@ function fetchContent(){
 			if (xhttp2.readyState == 4 && xhttp2.status == 200) {
 				console.log(xhttp2.responseText)
 				content = xhttp2.responseText
-				document.querySelector('.code-content').insertAdjacentHTML('beforeend', xhttp2.responseText);
+				document.querySelector('.code-content').innerHTML = "<pre><code class='python'>"+xhttp2.responseText+"</code></pre>";
+				
+			  document.querySelectorAll('pre code').forEach((block) => {
+			    hljs.highlightBlock(block);
+			  });
 				check_language = language;
 				check_concept = concept;
 			}
 			if (xhttp2.status == 404) {
 				console.log("Page not found")
+				document.querySelector('.code-content').innerHTML = "<section class='not-found'><div>Content Not Found</div></section>"
+				check_language = ""
+				check_concept = ""
 			}
 		}
 		if (content == "" || check_language != language || check_concept != concept) {
@@ -131,3 +139,4 @@ function fetchContent(){
 		console.log(e)
 	}
 }
+hljs.initHighlightingOnLoad();

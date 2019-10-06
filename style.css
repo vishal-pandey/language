@@ -28,7 +28,7 @@ header{
 .code-content{
 	width: 90%;
 	height: 95vh;
-	background-color: rgba(211,211,211,0.1);
+	/*background-color: rgba(211,211,211,1);*/
 }
 .content{
 	display: flex;
@@ -81,4 +81,11 @@ header{
 .sidebar::-webkit-scrollbar{
 	width: 0px;
     background-color: #F5F5F5;
+}
+pre{
+	margin: 0;
+}
+code{
+	height: 95vh;
+	background-color: rgba(200,250,200, 0.1)!important;
 }

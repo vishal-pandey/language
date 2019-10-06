@@ -246,12 +246,19 @@ function fetchContent() {
 			if (xhttp2.readyState == 4 && xhttp2.status == 200) {
 				console.log(xhttp2.responseText);
 				content = xhttp2.responseText;
-				document.querySelector('.code-content').insertAdjacentHTML('beforeend', xhttp2.responseText);
+				document.querySelector('.code-content').innerHTML = "<pre><code class='python'>" + xhttp2.responseText + "</code></pre>";
+
+				document.querySelectorAll('pre code').forEach(function (block) {
+					_highlight2.default.highlightBlock(block);
+				});
 				check_language = language;
 				check_concept = concept;
 			}
 			if (xhttp2.status == 404) {
 				console.log("Page not found");
+				document.querySelector('.code-content').innerHTML = "<section class='not-found'><div>Content Not Found</div></section>";
+				check_language = "";
+				check_concept = "";
 			}
 		};
 		if (content == "" || check_language != language || check_concept != concept) {
@@ -261,6 +268,7 @@ function fetchContent() {
 		console.log(e);
 	}
 }
+_highlight2.default.initHighlightingOnLoad();
 
 },{"highlight.js":3}],2:[function(require,module,exports){
 /*
