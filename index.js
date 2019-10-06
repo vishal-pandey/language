@@ -1,5 +1,8 @@
+import hljs from 'highlight.js';
 var language = ""
 var concept = ""
+
+var content = ""
 
 window.onload = ()=>{
 	processPath(window.location.hash)
@@ -80,6 +83,9 @@ function linkUpdate(){
 	}catch(e){
 		console.log(e)
 	}
+	if (language != 'null' && concept != 'null' && language != null && concept != null && language != undefined && concept != undefined && language != '' && concept != '') {
+		fetchContent()
+	}
 }
 
 function headMenu(links){
@@ -94,3 +100,34 @@ function sideMenu(links){
 	}
 }
 
+
+var check_language = "c"
+var check_concept = "c"
+
+function fetchContent(){
+	// console.log("Vishal")
+	// console.log("language "+language+"concept "+concept)
+	try{
+		var xhttp2 = new XMLHttpRequest()
+		xhttp2.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/"+language+"/"+concept+".py")
+
+		
+		xhttp2.onreadystatechange = ()=>{
+			if (xhttp2.readyState == 4 && xhttp2.status == 200) {
+				console.log(xhttp2.responseText)
+				content = xhttp2.responseText
+				document.querySelector('.code-content').insertAdjacentHTML('beforeend', xhttp2.responseText);
+				check_language = language;
+				check_concept = concept;
+			}
+			if (xhttp2.status == 404) {
+				console.log("Page not found")
+			}
+		}
+		if (content == "" || check_language != language || check_concept != concept) {
+			xhttp2.send()
+		}
+	}catch(e){
+		console.log(e)
+	}
+}
