@@ -40,5 +40,5 @@ function processPath(path){
 function linkUpdate(){
 	let xx = "/"+language+"/"+concept
 	window.location.hash = xx;
-	console.log(xx)
+	// console.log(xx)
 }

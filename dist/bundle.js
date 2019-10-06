@@ -82,7 +82,7 @@ function processPath(path) {
 function linkUpdate() {
 	var xx = "/" + language + "/" + concept;
 	window.location.hash = xx;
-	console.log(xx);
+	// console.log(xx)
 }
 
 },{}]},{},[1]);
