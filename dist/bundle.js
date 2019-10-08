@@ -11,6 +11,7 @@ var language = "";
 var concept = "";
 
 var content = "";
+var extentions;
 
 window.onload = function () {
 	processPath(window.location.hash);
@@ -35,6 +36,17 @@ window.onload = function () {
 		}
 	};
 	xhttp1.send();
+
+	var xhttp3 = new XMLHttpRequest();
+	xhttp3.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/extention.json");
+	xhttp3.onreadystatechange = function () {
+		if (xhttp3.readyState == 4 && xhttp3.status == 200) {
+			extentions = JSON.parse(xhttp3.responseText);
+			console.log(extentions);
+			processLink();
+		}
+	};
+	xhttp3.send();
 };
 
 function processLink() {
@@ -232,15 +244,22 @@ function sideMenu(links) {
 	}
 }
 
-var check_language = "c";
-var check_concept = "c";
+var check_language = "cooo";
+var check_concept = "cooo";
 
 function fetchContent() {
 	// console.log("Vishal")
 	// console.log("language "+language+"concept "+concept)
+	document.querySelector('.code-content').innerHTML = '<section class="not-found">\
+	<div class="load-wrapp">\
+	<div class="load-5">\
+	<div class="ring-2"><div class="ball-holder"><div class="ball"></div></div></div>\
+	</div>\
+	</div>\
+	</section>';
 	try {
 		var xhttp2 = new XMLHttpRequest();
-		xhttp2.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/" + language + "/" + concept + ".py");
+		xhttp2.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/" + language + "/" + concept + "." + extentions[language]);
 
 		xhttp2.onreadystatechange = function () {
 			if (xhttp2.readyState == 4 && xhttp2.status == 200) {
@@ -251,24 +270,32 @@ function fetchContent() {
 				document.querySelectorAll('pre code').forEach(function (block) {
 					_highlight2.default.highlightBlock(block);
 				});
+
 				check_language = language;
 				check_concept = concept;
 			}
 			if (xhttp2.status == 404) {
 				console.log("Page not found");
-				document.querySelector('.code-content').innerHTML = "<section class='not-found'><div>Content Not Found</div></section>";
+				document.querySelector('.code-content').innerHTML = "<section class='not-found'><div>\
+					<img src='https://images.squarespace-cdn.com/content/51cdafc4e4b09eb676a64e68/1470175715831-NUJOMI6VW13ZNT1MI0VB/?format=500w&content-type=image%2Fjpeg' width='300'><br><br>\
+					<div style='width: 100%; text-align: center; font-size: 25px;'>Content Not Found !!!</div>\
+				</div></section>";
 				check_language = "";
 				check_concept = "";
 			}
 		};
 		if (content == "" || check_language != language || check_concept != concept) {
 			xhttp2.send();
+		} else {
+			document.querySelector('.code-content').innerHTML = "<pre><code class='python'>" + content + "</code></pre>";
+			document.querySelectorAll('pre code').forEach(function (block) {
+				_highlight2.default.highlightBlock(block);
+			});
 		}
 	} catch (e) {
 		console.log(e);
 	}
 }
-_highlight2.default.initHighlightingOnLoad();
 
 },{"highlight.js":3}],2:[function(require,module,exports){
 /*
