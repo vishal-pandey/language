@@ -265,7 +265,7 @@ function fetchContent() {
 			if (xhttp2.readyState == 4 && xhttp2.status == 200) {
 				console.log(xhttp2.responseText);
 				content = xhttp2.responseText;
-				document.querySelector('.code-content').innerHTML = "<pre><code class='python'>" + xhttp2.responseText + "</code></pre>";
+				document.querySelector('.code-content').innerHTML = "<pre><code class='" + language + "'>" + xhttp2.responseText + "</code></pre>";
 
 				document.querySelectorAll('pre code').forEach(function (block) {
 					_highlight2.default.highlightBlock(block);
@@ -287,7 +287,7 @@ function fetchContent() {
 		if (content == "" || check_language != language || check_concept != concept) {
 			xhttp2.send();
 		} else {
-			document.querySelector('.code-content').innerHTML = "<pre><code class='python'>" + content + "</code></pre>";
+			document.querySelector('.code-content').innerHTML = "<pre><code class='" + language + "'>" + content + "</code></pre>";
 			document.querySelectorAll('pre code').forEach(function (block) {
 				_highlight2.default.highlightBlock(block);
 			});
