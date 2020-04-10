@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Loading</title>
+</head>
+<body>
+<div class="loading"></div>
+</body>
+</html>
+
+<style type="text/css">
+	.loading{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		border: 10px solid lightgrey;
+		position: relative;
+		top: 0;
+		left: 0;
+		animation-name: cent;
+		animation-duration: 900ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+	.loading::before{
+		content: "";
+		position: absolute;
+		width: 100px;
+		height: 50px;
+		border: 10px solid grey;
+		border-top-left-radius: 100px;
+		border-top-right-radius: 100px;
+		border-bottom: 0;
+		top: -10px;
+		left: -10px;
+		animation-name: vishal;
+		animation-duration: 900ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+	.loading::after{
+		content: "";
+		position: absolute;
+		width: 100px;
+		height: 50px;
+		border: 10px solid red;
+		border-bottom-left-radius: 100px;
+		border-bottom-right-radius: 100px;
+		border-top: 0;
+		top: 50px;
+		left: -10px;
+		/*background-color: grey;*/
+		animation-name: vishal;
+		animation-duration: 900ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+	@keyframes vishal{
+		0%{
+			transform: rotateZ(0deg) translateY(0px);
+			/*height: 50px;*/
+		}
+		50%{
+			transform: rotateZ(180deg) translateY(50px);
+			/*transform: ;*/
+			/*height: 10px;*/
+		}
+		100%{
+			transform: rotateZ(360deg) translateY(0px);
+			/*height: 50px;*/
+		}
+	}
+
+	@keyframes cent{
+		0%{
+			width: 100px;
+			height: 100px;
+			transform: translateY(0px);
+		}
+		50%{
+			width: 150px;
+			height: 150px;
+			transform: translateY(150px);
+		}
+		100%{
+			width: 100px;
+			height: 100px;
+			transform: translateY(0px);
+		}
+	}
+	 body{
+	 	width: 100vw;
+	 	height: 100vh;
+	 	margin: 0;
+	 	padding: 0;
+	 	display: flex;
+	 	align-items: center;
+	 	justify-content: center;
+	 	position: relative;
+	 	/*background-color: green;*/
+	 }
+</style>

@@ -18,7 +18,7 @@ window.onload = function () {
 	linkUpdate();
 
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/language.json");
+	xhttp.open('GET', "repo/language.json");
 	xhttp.onreadystatechange = function () {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
 			headMenu(JSON.parse(xhttp.responseText));
@@ -28,7 +28,7 @@ window.onload = function () {
 	xhttp.send();
 
 	var xhttp1 = new XMLHttpRequest();
-	xhttp1.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/concept.json");
+	xhttp1.open('GET', "repo/concept.json");
 	xhttp1.onreadystatechange = function () {
 		if (xhttp1.readyState == 4 && xhttp1.status == 200) {
 			sideMenu(JSON.parse(xhttp1.responseText));
@@ -38,7 +38,7 @@ window.onload = function () {
 	xhttp1.send();
 
 	var xhttp3 = new XMLHttpRequest();
-	xhttp3.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/extention.json");
+	xhttp3.open('GET', "repo/extention.json");
 	xhttp3.onreadystatechange = function () {
 		if (xhttp3.readyState == 4 && xhttp3.status == 200) {
 			extentions = JSON.parse(xhttp3.responseText);
@@ -259,7 +259,7 @@ function fetchContent() {
 	</section>';
 	try {
 		var xhttp2 = new XMLHttpRequest();
-		xhttp2.open('GET', "https://raw.githubusercontent.com/vishal-pandey/language/master/repo/" + language + "/" + concept + "." + extentions[language]);
+		xhttp2.open('GET', "repo/" + language + "/" + concept + "." + extentions[language]);
 
 		xhttp2.onreadystatechange = function () {
 			if (xhttp2.readyState == 4 && xhttp2.status == 200) {

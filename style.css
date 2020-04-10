@@ -61,6 +61,7 @@ header{
 	background-color: white;
 	border-right: 1px dashed lightgrey;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 .sidebar .button{
@@ -72,6 +73,7 @@ header{
 	border-bottom: 1px dashed lightgrey;
 	font-size: 14px;
 	padding: 5px;
+	cursor: pointer;
 }
 
 .sidebar{
