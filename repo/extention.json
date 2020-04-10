@@ -3,5 +3,6 @@
 	"cpp": "cpp",
 	"c": "c",
 	"java": "java",
-	"php": "php"
+	"php": "php",
+	"javascript": "js"
 }
